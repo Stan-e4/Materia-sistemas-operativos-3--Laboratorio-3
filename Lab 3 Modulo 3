@@ -1,0 +1,15 @@
+Habilitar sshçsudo apt update && sudo apt install openssh-server -y
+sudo systemctl enable --now ssh
+
+En wcdm de windows: ssh tu_usuario_linux@la_ip_de_linux
+Escribe yes si te pregunta por el "fingerprint".
+
+Pon tu contraseña de Linux.
+
+Si entraste, escribe exit para salir y volver a Windows.
+Generar llaves (Publica-Privada) en Windows
+ssh-keygen
+Copia y pega esto en tu PowerShell de Windows, reemplazando los datos:
+type $env:USERPROFILE\.ssh\id_rsa.pub | ssh tu_usuario_linux@la_ip_de_linux "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+
+intenta cinectarte denuevo: ssh tu_usuario_linux@la_ip_de_linux
