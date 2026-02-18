@@ -1,0 +1,49 @@
+nano backup.sh
+#!/bin/bash
+
+# 1. Capturamos la fecha y hora en el formato solicitado
+# %d=día, %m=mes, %Y=año, %H=hora, %M=minuto
+FECHA=$(date +"%d-%m-%Y:%H:%M")
+
+# 2. Definimos el nombre del archivo final
+# Usamos la variable $USER para que funcione con cualquier usuario
+NOMBRE_ARCHIVO="backup_${USER}_${FECHA}.tar.gz"
+
+# 3. Creamos el comprimido
+# -c: crear, -z: comprimir con gzip, -v: verbose (mostrar proceso), -f: archivo
+echo "Creando respaldo de /home/$USER ..."
+tar -czf "$NOMBRE_ARCHIVO" "/home/$USER"
+
+echo "--------------------------------------"
+echo "Respaldo completado con éxito."
+echo "Archivo generado: $NOMBRE_ARCHIVO"
+control o y control x
+chmod +x backup_home.sh
+./backup_home.sh
+
+De red 
+
+#!/bin/bash
+
+# 1. Preguntar al usuario el nombre del archivo
+echo -n "Por favor, ingresa el nombre para guardar el reporte de red: "
+read NOMBRE_ARCHIVO
+
+# 2. Definir la ruta del Escritorio
+# Intentamos detectar si la carpeta se llama "Escritorio" o "Desktop"
+if [ -d "$HOME/Escritorio" ]; then
+    RUTA="$HOME/Escritorio"
+else
+    RUTA="$HOME/Desktop"
+fi
+
+# 3. Ejecutar ifconfig y guardar el resultado
+# Usamos el operador > para redirigir la salida al archivo
+ifconfig > "$RUTA/$NOMBRE_ARCHIVO"
+
+echo "--------------------------------------"
+echo "La información de red ha sido guardada en:"
+echo "$RUTA/$NOMBRE_ARCHIVO"
+control o y control x 
+chmod +x info_red.sh
+./info_red.sh
