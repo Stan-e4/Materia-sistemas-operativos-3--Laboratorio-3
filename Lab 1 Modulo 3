@@ -1,0 +1,18 @@
+Editar GRUB
+sudo nano /etc/default/grub
+# Antes
+GRUB_TIMEOUT=5
+
+# Después (Así debe quedar)
+GRUB_TIMEOUT=20
+Ctrl + O, Enter, y luego Ctrl + X
+sudo update-grub
+Para los resultados :grep "GRUB_TIMEOUT" /etc/default/grub
+Recuperar contraseña:
+Modificar la línea del kernel: Buscar linux o linux 16
+usar: rw init=/bin/bash
+Presiona Ctrl + X o F10 para arrancar con esa configuración temporal.
+passwd root
+exec /sbin/init
+# O si eso no funciona:
+reboot -f
